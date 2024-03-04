@@ -1,0 +1,15 @@
+---
+- hosts: control_node
+  become: true
+  tasks:
+
+  - name: Collecting Log Files
+    fetch:
+      path: /var/log/syslog
+      dest: ~/EN_Files
+      flat: yes
+    register: syslog
+
+  - name: Viewing the log files
+    debug:
+      var: syslog
